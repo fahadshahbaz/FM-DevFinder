@@ -3,26 +3,40 @@ import Navbar from "./components/Navbar";
 import SearchBar from "./components/SearchBar";
 import UserDisplay from "./components/UserDisplay";
 
-function App() {
-  const [results, setResults] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+export interface GitHubUser {
+  avatar_url: string;
+  login: string;
+  name: string | null;
+  created_at: string;
+  bio: string | null;
+  public_repos: number;
+  followers: number;
+  following: number;
+  location: string | null;
+  blog: string;
+  twitter_username: string | null;
+  company: string | null;
+}
 
-  const fetchGithubUser = async (username) => {
+function App() {
+  const [results, setResults] = useState<GitHubUser | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const fetchGithubUser = async (username: string): Promise<void> => {
     setLoading(true); // Start loading indicator
-    setError(null);   // Clear any previous errors
+    setError(null); // Clear any previous errors
 
     try {
       const response = await fetch(`https://api.github.com/users/${username}`);
       if (!response.ok) {
         throw new Error("User not found");
       }
-      const userData = await response.json();
-      console.log(userData);
-      
+      const userData: GitHubUser = await response.json();
+
       setResults(userData);
       setError(null);
-    } catch (err) {
+    } catch {
       setError("User not found");
       setResults(null);
     } finally {
