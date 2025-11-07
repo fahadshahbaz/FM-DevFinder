@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import Navbar from "./Components/Navbar";
-import SearchBar from "./Components/SearchBar";
-import UserDisplay from "./Components/UserDisplay";
+import Navbar from "./components/Navbar";
+import SearchBar from "./components/SearchBar";
+import UserDisplay from "./components/UserDisplay";
 
 function App() {
   const [results, setResults] = useState(null);

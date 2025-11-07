@@ -5,13 +5,20 @@
 *,
 *::after,
 *::before {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Space Mono", monospace;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Space Mono", monospace;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
 }
 
 body {
-    background-color: #141D2F;
+    background-color: #141d2f;
     color: white;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
